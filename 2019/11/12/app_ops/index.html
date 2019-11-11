@@ -51,14 +51,17 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="layout: posttitle: Android 使用 APP Ops 和 Shizuku 配置应用权限                               # Title of the pagecolor: red                             # Add the specified color as feature image, and change l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="app_ops">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;app_ops&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="layout: posttitle: Android 使用 APP Ops 和 Shizuku 配置应用权限                               # Title of the pagecolor: red                             # Add the specified color as feature image, and change l">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-04T08:10:11.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2019/">
+<link rel="canonical" href="http://yoursite.com/2019/11/12/app_ops/">
 
 
 <script id="page-configurations">
@@ -66,13 +69,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | Hexo</title>
+  <title>app_ops | Hexo</title>
   
 
 
@@ -166,189 +169,98 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 8 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/app_ops/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          app_ops
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-12 07:23:26" itemprop="dateCreated datePublished" datetime="2019-11-12T07:23:26+08:00">2019-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-04 16:10:11" itemprop="dateModified" datetime="2019-11-04T16:10:11+08:00">2019-11-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
+        <hr>
+<p>layout: post<br>title: Android 使用 APP Ops 和 Shizuku 配置应用权限                               # Title of the page<br>color: red                             # Add the specified color as feature image, and change link colors in post<br>bootstrap: true                                   # Add bootstrap to the page<br>tags: [Linux]<br>excerpt_separator: <a id="more"></a></p>
+<hr>
+<p>Android 应用是出了名的耍流氓，索取各种权限，不给还不给用。其实 Android 有一个 APP Ops 的功能，只是被 google 隐藏了，本文就是介绍如何使用该功能</p>
+<!--more-->
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/app_ops/" itemprop="url">
-            <span itemprop="name">app_ops</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/docker_example/" itemprop="url">
-            <span itemprop="name">docker_example</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/github_page/" itemprop="url">
-            <span itemprop="name">github_page</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/linux_sound_card_setup/" itemprop="url">
-            <span itemprop="name">Linux 声卡设置</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/scrapy_control_android/" itemprop="url">
-            <span itemprop="name">scrapy_control_android</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/ubuntu_wifi_setup/" itemprop="url">
-            <span itemprop="name">ubuntu_wifi_setup</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-12T07:23:26+08:00"
-              content="2019-11-12">
-          11-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/12/wukong_w1/" itemprop="url">
-            <span itemprop="name">Wukong Robot (Week 1)</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-10T18:24:32+08:00"
-              content="2019-11-10">
-          11-10
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/10/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<ol>
+<li>到 Google Play 上安装 APP Ops 和 Shizuku</li>
+<li>安装 ADB，并在手机开启 USB 调试</li>
+<li>在电脑上运行<br> <code>adb devices</code><br> <code>adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh</code></li>
+<li>开启“Allow ADB debugging in charge only mode”防止 ADB 被杀掉</li>
+</ol>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/12/docker_example/" rel="next" title="docker_example">
+                  <i class="fa fa-chevron-left"></i> docker_example
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

@@ -51,17 +51,20 @@
   };
 </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="Linux 设置默认播放设备和录音设备">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;10&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="Linux 声卡设置">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;linux_sound_card_setup&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Linux 设置默认播放设备和录音设备">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-10T10:24:32.269Z">
+<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;11032:1">
+<meta property="og:updated_time" content="2019-11-04T07:54:31.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="en-resource:&#x2F;&#x2F;database&#x2F;11032:1">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/10/hello-world/">
+<link rel="canonical" href="http://yoursite.com/2019/11/12/linux_sound_card_setup/">
 
 
 <script id="page-configurations">
@@ -75,7 +78,7 @@
   };
 </script>
 
-  <title>Hello World | Hexo</title>
+  <title>Linux 声卡设置 | Hexo</title>
   
 
 
@@ -174,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/linux_sound_card_setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Linux 声卡设置
         </h1>
 
         <div class="post-meta">
@@ -197,8 +200,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-10 18:24:32" itemprop="dateCreated datePublished" datetime="2019-11-10T18:24:32+08:00">2019-11-10</time>
+              <time title="Created: 2019-11-12 07:23:26" itemprop="dateCreated datePublished" datetime="2019-11-12T07:23:26+08:00">2019-11-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-04 15:54:31" itemprop="dateModified" datetime="2019-11-04T15:54:31+08:00">2019-11-04</time>
+              </span>
 
           
 
@@ -211,19 +221,77 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>Linux 设置默认播放设备和录音设备</p>
+<a id="more"></a>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>一、查看声卡设备</p>
+<p><code>cat /proc/asound/cards</code></p>
+<p>会显示安装该设备在 ALSA(Advanced Linux Sound Architecture) 框架下的所有设备</p>
+<blockquote>
+<p>ALSA是Advanced Linux Sound Architecture，高级Linux声音架构的简称,它在Linux操作系统上提供了音频和MIDI（Musical Instrument Digital Interface，音乐设备数字化接口）的支持</p>
+</blockquote>
+<p>二、调节音量大小</p>
+<p><code>alsamixer</code></p>
+<p>打开 AlsaMixer，调节音量大小<br><img src="en-resource://database/11032:1" alt="f6ff0f4608a9ed48b20c0659c5616fcd.jpeg"><br>(图2.1 alsamixer)</p>
+<p>三、配置音频输出设备</p>
+<p><code>amixer</code></p>
+<p>可以设置声音由 3.5mm 接口输出还是由 HDMI 输出，具体用法 <code>amixer --help</code> 查看</p>
+<p>四、播放测试</p>
+<ol>
+<li><p><code>speaker-test -c2 -t wav</code></p>
+<p> 测试默认音频播放是否正常</p>
+</li>
+</ol>
+<ol start="2">
+<li><p><code>speaker-test -D plughw:1 -c2 -t wav</code></p>
+<p> 测试声卡1音频播放是否正常</p>
+<p>五、录音测试</p>
+</li>
+<li><p><code>sudo apt install sox libsox-fmt-mp3</code></p>
+<p> 安装 sox 和相应的库，sox 的格式为 <code>sox &lt;input&gt; &lt;output&gt;</code></p>
+</li>
+<li><p><code>sox -t alsa plughw:1 -t alsa plughw:1</code></p>
+<p> 测试声卡1录音</p>
+</li>
+</ol>
+<p>六、修改默认音频设备</p>
+<ol>
+<li><p>修改 ALSA 默认音频设备</p>
+</li>
+<li><p> <code>nano ~/.asoundrc</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pcm.!default &#123;</span><br><span class="line">        type asym</span><br><span class="line">        playback.pcm &#123;</span><br><span class="line">            type plug</span><br><span class="line">            slave.pcm &quot;hw:1,0&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        capture.pcm &#123;</span><br><span class="line">            type plug</span><br><span class="line">            slave.pcm &quot;hw:1,0&quot;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ctl.!default &#123;</span><br><span class="line">        type hw</span><br><span class="line">        card 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 PulseAudio 默认音频设备</p>
+</li>
+<li><p> <code>nano /etc/pulse/default.pa</code></p>
+<p> 在末尾添加</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load-module module-alsa-source device=hw:1,0</span><br><span class="line">pacmd load-module module-alsa-source device=hw:1,0</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ol>
+<p>七、录制与播放</p>
+<ol>
+<li>录制<ol>
+<li><code>arecord a.wav</code></li>
+<li><code>sox -d myrec.mp3 或 $ rec myrec.mp3</code></li>
+</ol>
+</li>
+<li>定时录制<ol>
+<li><code>sox -t alsa plughw:1 myrec.wav trim 0 00:30:00</code></li>
+<li><code>sox -t alsa plughw:1 myrec.wav trim 0 01:00:00 : newfile : restart</code></li>
+</ol>
+</li>
+<li>播放<ol>
+<li><code>aplay a.wav</code></li>
+<li><code>sox myrec.mp3 -d 或 $ play myrec.mp3</code></li>
+</ol>
+</li>
+<li>远程监听<ol>
+<li><code>ssh pi@[IP address] sox -t alsa plughw:1 -t sox - | sox -q -t sox - -d</code></li>
+</ol>
+</li>
+</ol>
+<p>参考资料<br><a href="https://rollingstarky.github.io/2019/01/06/raspberry-pi-audio-configuration-and-applications/" target="_blank" rel="noopener">树莓派3 音频配置及其应用场景（录音、VoIP 电话等）</a></p>
 
     </div>
 
@@ -232,18 +300,24 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/12/scrapy_control_android/" rel="next" title="scrapy_control_android">
+                  <i class="fa fa-chevron-left"></i> scrapy_control_android
+                </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/12/wukong_w1/" rel="prev" title="Wukong Robot (Week 1)">
-                  Wukong Robot (Week 1) <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/12/github_page/" rel="prev" title="github_page">
+                  github_page <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -283,7 +357,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
