@@ -51,17 +51,17 @@
   };
 </script>
 
-  <meta name="description" content="layout: posttitle: Docker(Community) 使用简介color: bluebootstrap: truetags: [docker]excerpt_separator:">
+  <meta name="description" content="layout: posttitle: Ubuntu 18.04LTS 安装无线网卡驱动color: redbootstrap: truetags: [Linux]excerpt_separator:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker_example">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;docker_example&#x2F;index.html">
+<meta property="og:title" content="ubuntu_wifi_setup">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;ubuntu_wifi_setup&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="layout: posttitle: Docker(Community) 使用简介color: bluebootstrap: truetags: [docker]excerpt_separator:">
+<meta property="og:description" content="layout: posttitle: Ubuntu 18.04LTS 安装无线网卡驱动color: redbootstrap: truetags: [Linux]excerpt_separator:">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-12T13:00:29.729Z">
+<meta property="og:updated_time" content="2019-11-13T05:07:19.478Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/12/docker_example/">
+<link rel="canonical" href="http://yoursite.com/2019/11/13/ubuntu_wifi_setup/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>docker_example | Hexo</title>
+  <title>ubuntu_wifi_setup | Hexo</title>
   
 
 
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/docker_example/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/ubuntu_wifi_setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          docker_example
+          ubuntu_wifi_setup
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-12 21:00:29" itemprop="dateCreated datePublished" datetime="2019-11-12T21:00:29+08:00">2019-11-12</time>
+              <time title="Created: 2019-11-13 13:07:19" itemprop="dateCreated datePublished" datetime="2019-11-13T13:07:19+08:00">2019-11-13</time>
             </span>
 
           
@@ -212,45 +212,31 @@
 
       
         <hr>
-<p>layout: post<br>title: Docker(Community) 使用简介<br>color: blue<br>bootstrap: true<br>tags: [docker]<br>excerpt_separator: <a id="more"></a></p>
+<p>layout: post<br>title: Ubuntu 18.04LTS 安装无线网卡驱动<br>color: red<br>bootstrap: true<br>tags: [Linux]<br>excerpt_separator: <a id="more"></a></p>
 <hr>
-<p>介绍如何利用 Github Pages 搭建博客</p>
+<p>由于 broadcom 的网卡驱动是闭源的，所以安装 Ubuntu 后是没有无线网卡驱动的，需要自行安装</p>
 <!--more-->
-<h2 id="一、Docker-安装"><a href="#一、Docker-安装" class="headerlink" title="一、Docker 安装"></a>一、Docker 安装</h2><ol>
-<li><p>Uninstall old versions<br><code>sudo apt-get remove docker docker-engine docker.io containerd runc</code></p>
-</li>
-<li><p>Install using the repository</p>
 <ol>
-<li><p><code>sudo apt update</code></p>
+<li><p>下载 broadcom 无线网卡驱动的安装包<br> <a href="https://packages.ubuntu.com/bionic/bcmwl-kernel-source" target="_blank" rel="noopener">bcmwl-kernel-source_6.30.223.271+bdcom-0ubuntu4_amd64.deb</a></p>
 </li>
-<li><p><code>sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common</code></p>
+<li><p>移除旧版本驱动后，安装下载到的安装包<br> <code>sudo apt-get remove --purge bcmwl-kernel-source</code><br> <code>sudo dpkg -i bcmwl-kernel-source_6.30.223.271+bdcom-0ubuntu4_amd64.deb</code></p>
 </li>
-<li><p>Add Docker’s official GPG key:<br> <code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code></p>
-</li>
-<li><p>verify the fingerprint <code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code><br> <code>sudo apt-key fingerprint 0EBFCD88</code></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pub   rsa4096 2017-02-22 [SCEA]</span><br><span class="line">      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span><br><span class="line">uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;</span><br><span class="line">sub   rsa4096 2017-02-22 [S]</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><p>Install Docker Engine - Community<br><code>sudo apt update</code><br><code>sudo apt install docker-ce docker-ce-cli containerd.io</code></p>
-</li>
-<li><p>Install a specific version of Docker Engine<br> <code>apt-cache madison docker-ce</code></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">      docker-ce | 5:18.09.1~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages</span><br><span class="line">      docker-ce | 5:18.09.0~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages</span><br><span class="line">      docker-ce | 18.06.1~ce~3-0~ubuntu       | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages</span><br><span class="line">      docker-ce | 18.06.0~ce~3-0~ubuntu       | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages</span><br><span class="line">      ...</span><br><span class="line">    ```   </span><br><span class="line">    </span><br><span class="line">    `sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io`</span><br><span class="line">    </span><br><span class="line">5. Hello world</span><br><span class="line">`sudo docker run hello-world`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 二、Docker 使用</span><br><span class="line">1. Docker 加速</span><br><span class="line">    1. 使用阿里云的镜像加速服务</span><br><span class="line">    2. 编辑 `daemon.json`</span><br></pre></td></tr></table></figure>
-<pre><code>sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json &lt;&lt;-&apos;EOF&apos;
-{
-    &quot;registry-mirrors&quot;: [&quot;https://ivri9wbi.mirror.aliyuncs.com&quot;]
-}
-EOF</code></pre><pre><code>3. Reload config file
-    `sudo systemctl daemon-reload`
-    `sudo systemctl restart docker`</code></pre></li>
-<li><p>Docker example</p>
+<li><p>“ERROR：could not insert ‘wl’:Required key not available” 如果出现这个错误提示，按以下步骤操作</p>
 <ol>
-<li>nextcloud<br> <code>docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/data rootlogin/nextcloud</code></li>
-<li>wukong<br> <code>docker run -it -p 5000:5000 --device /dev/snd -e LANG=C.UTF-8 wzpan/wukong-robot:latest</code></li>
-</ol>
+<li><p>创建签名 keys<br><code>openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj &quot;/CN=Descriptive name/&quot;</code></p>
+</li>
+<li><p>注册模块<br><code>sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n wl)</code></p>
+</li>
+<li><p>注册 key 到 Secure Boot<br><code>sudo mokutil --import MOK.der</code></p>
+</li>
+<li><p>重启，选择带有MOK的那一项，输入刚才设置的密码</p>
+</li>
+<li><p><code>sudo modprobe wl</code></p>
 </li>
 </ol>
-<p>参考资料<br><a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#prerequisites" target="_blank" rel="noopener">Get Docker Engine - Community for Ubuntu</a></p>
+<p>参考资料<br><a href="https://elementaryos.stackexchange.com/questions/15842/bcm43142-and-linux-kernel-4-15-0-24-generic/15855#15855" target="_blank" rel="noopener">BCM43142 and linux kernel 4.15.0-24-generic</a><br><a href="%3Cspan%3Ehttps://www.cnblogs.com/lenmom/p/9550325.html%3C/span%3E">在ubuntu 18.04下，无线网卡无驱动，连不上wifi，显示wifi没有适配器的解决方法</a></p>
+</li>
+</ol>
 
     </div>
 
@@ -264,7 +250,7 @@ EOF</code></pre><pre><code>3. Reload config file
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/12/app_ops/" rel="next" title="app_ops">
+                <a href="/2019/11/13/app_ops/" rel="next" title="app_ops">
                   <i class="fa fa-chevron-left"></i> app_ops
                 </a>
             </div>
@@ -272,8 +258,8 @@ EOF</code></pre><pre><code>3. Reload config file
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/12/github_page/" rel="prev" title="github_page">
-                  github_page <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/13/docker_example/" rel="prev" title="docker_example">
+                  docker_example <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -313,7 +299,6 @@ EOF</code></pre><pre><code>3. Reload config file
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Docker-安装"><span class="nav-number">1.</span> <span class="nav-text">一、Docker 安装</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

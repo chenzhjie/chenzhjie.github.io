@@ -51,17 +51,17 @@
   };
 </script>
 
-  <meta name="description" content="layout: posttitle: 利用 Github Pages 搭建博客color: bluebootstrap: truetags: [github, blog]excerpt_separator:">
+  <meta name="description" content="layout: posttitle: Android 使用 APP Ops 和 Shizuku 配置应用权限color: redbootstrap: truetags: [Linux]excerpt_separator:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github_page">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;github_page&#x2F;index.html">
+<meta property="og:title" content="app_ops">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;app_ops&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="layout: posttitle: 利用 Github Pages 搭建博客color: bluebootstrap: truetags: [github, blog]excerpt_separator:">
+<meta property="og:description" content="layout: posttitle: Android 使用 APP Ops 和 Shizuku 配置应用权限color: redbootstrap: truetags: [Linux]excerpt_separator:">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-12T13:01:31.634Z">
+<meta property="og:updated_time" content="2019-11-13T03:43:38.268Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/12/github_page/">
+<link rel="canonical" href="http://yoursite.com/2019/11/13/app_ops/">
 
 
 <script id="page-configurations">
@@ -75,7 +75,7 @@
   };
 </script>
 
-  <title>github_page | Hexo</title>
+  <title>app_ops | Hexo</title>
   
 
 
@@ -174,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/github_page/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/app_ops/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          github_page
+          app_ops
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-12 21:01:31" itemprop="dateCreated datePublished" datetime="2019-11-12T21:01:31+08:00">2019-11-12</time>
+              <time title="Created: 2019-11-13 11:43:38" itemprop="dateCreated datePublished" datetime="2019-11-13T11:43:38+08:00">2019-11-13</time>
             </span>
 
           
@@ -212,26 +212,17 @@
 
       
         <hr>
-<p>layout: post<br>title: 利用 Github Pages 搭建博客<br>color: blue<br>bootstrap: true<br>tags: [github, blog]<br>excerpt_separator: <a id="more"></a></p>
+<p>layout: post<br>title: Android 使用 APP Ops 和 Shizuku 配置应用权限<br>color: red<br>bootstrap: true<br>tags: [Linux]<br>excerpt_separator: <a id="more"></a></p>
 <hr>
-<p>介绍如何利用 Github Pages 搭建博客</p>
+<p>Android 应用是出了名的耍流氓，索取各种权限，不给还不给用。其实 Android 有一个 APP Ops 的功能，只是被 google 隐藏了，本文就是介绍如何使用该功能</p>
 <!--more-->
-<h2 id="一、Jekyll"><a href="#一、Jekyll" class="headerlink" title="一、Jekyll"></a>一、Jekyll</h2><p>Github Pages 使用的 Jekyll</p>
+
 <ol>
-<li>Jekyll 安装<ol>
-<li>Jekyll 基于 Ruby，首先应安装 Ruby 环境<br><code>sudo apt install ruby</code><br><code>sudo apt install ruby-dev</code></li>
-<li>使用 gem 安装 jekyll 和 bundle<br><code>gem install jekyll bundle</code></li>
+<li>到 Google Play 上安装 APP Ops 和 Shizuku</li>
+<li>安装 ADB，并在手机开启 USB 调试</li>
+<li>在电脑上运行<br> <code>adb devices</code><br> <code>adb shell sh /sdcard/Android/data/moe.shizuku.privileged.api/files/start.sh</code></li>
+<li>开启“Allow ADB debugging in charge only mode”防止 ADB 被杀掉</li>
 </ol>
-</li>
-<li>到网上下载 <a href="http://themes.jekyllrc.org/mug/" target="_blank" rel="noopener">Jekyll</a> 主题，按照 readme 去安装使用</li>
-<li>若运行期间提示错误，可尝试用 <code>gem uninstall package_name</code> 卸载相应的包后，使用 <code>gem install install package_name</code>，安装最新的包</li>
-</ol>
-<h2 id="二、Github-Pages"><a href="#二、Github-Pages" class="headerlink" title="二、Github Pages"></a>二、Github Pages</h2><p>创建仓库，仓库名必须是 “user_name.github.io”，完成。</p>
-<h2 id="三、Git-同步"><a href="#三、Git-同步" class="headerlink" title="三、Git 同步"></a>三、Git 同步</h2><p>配置 .ssh/.config 添加 ssh key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">        User git</span><br><span class="line">        Hostname github.com</span><br><span class="line">        PreferredAuthentications publickey</span><br><span class="line">        IdentityFile /home/user/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
-<p>测试配置是否成功</p>
-<p><code>ssh -T git@github.com</code></p>
-<p>参考资料<br><a href="https://gist.github.com/rbialek/1012262" target="_blank" rel="noopener">ssh/.config demo</a><br><a href="https://segmentfault.com/q/1010000000835302" target="_blank" rel="noopener">git - 是否必须每次添加ssh-add</a></p>
 
     </div>
 
@@ -245,16 +236,16 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/12/docker_example/" rel="next" title="docker_example">
-                  <i class="fa fa-chevron-left"></i> docker_example
+                <a href="/2019/11/13/wukong_w1/" rel="next" title="Wukong Robot (Week 1)">
+                  <i class="fa fa-chevron-left"></i> Wukong Robot (Week 1)
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/12/scrapy_control_android/" rel="prev" title="scrapy_control_android">
-                  scrapy_control_android <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/13/ubuntu_wifi_setup/" rel="prev" title="ubuntu_wifi_setup">
+                  ubuntu_wifi_setup <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -294,7 +285,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Jekyll"><span class="nav-number">1.</span> <span class="nav-text">一、Jekyll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Github-Pages"><span class="nav-number">2.</span> <span class="nav-text">二、Github Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Git-同步"><span class="nav-number">3.</span> <span class="nav-text">三、Git 同步</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -51,17 +51,18 @@
   };
 </script>
 
-  <meta name="description" content="layout: posttitle: Ubuntu 18.04LTS 安装无线网卡驱动color: redbootstrap: truetags: [Linux]excerpt_separator:">
+  <meta name="description" content="我 fork 的一个开源项目，名叫 wukong-robot这是我第一周的工作">
+<meta name="keywords" content="NLP,IOT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu_wifi_setup">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;ubuntu_wifi_setup&#x2F;index.html">
+<meta property="og:title" content="Wukong Robot (Week 1)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;wukong_w1&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="layout: posttitle: Ubuntu 18.04LTS 安装无线网卡驱动color: redbootstrap: truetags: [Linux]excerpt_separator:">
+<meta property="og:description" content="我 fork 的一个开源项目，名叫 wukong-robot这是我第一周的工作">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-12T12:22:57.246Z">
+<meta property="og:updated_time" content="2019-11-13T03:41:38.836Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/12/ubuntu_wifi_setup/">
+<link rel="canonical" href="http://yoursite.com/2019/11/13/wukong_w1/">
 
 
 <script id="page-configurations">
@@ -75,7 +76,7 @@
   };
 </script>
 
-  <title>ubuntu_wifi_setup | Hexo</title>
+  <title>Wukong Robot (Week 1) | Hexo</title>
   
 
 
@@ -174,7 +175,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/ubuntu_wifi_setup/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/wukong_w1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +188,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ubuntu_wifi_setup
+          Wukong Robot (Week 1)
         </h1>
 
         <div class="post-meta">
@@ -197,7 +198,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-12 20:22:57" itemprop="dateCreated datePublished" datetime="2019-11-12T20:22:57+08:00">2019-11-12</time>
+              <time title="Created: 2019-11-13 11:41:38" itemprop="dateCreated datePublished" datetime="2019-11-13T11:41:38+08:00">2019-11-13</time>
             </span>
 
           
@@ -211,32 +212,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
-<p>layout: post<br>title: Ubuntu 18.04LTS 安装无线网卡驱动<br>color: red<br>bootstrap: true<br>tags: [Linux]<br>excerpt_separator: <a id="more"></a></p>
+        <p>我 fork 的一个开源项目，名叫 <a href="https://github.com/wzpan/wukong-robot/" target="_blank" rel="noopener">wukong-robot</a><br>这是我第一周的工作</p>
+<a id="more"></a>
+
+<p>第一周的工作主要是搭建硬件平台，我使用的硬件清单如下：</p>
+<ol>
+<li>RASP 3B+</li>
+<li>Sony PS3 eye</li>
+<li>3.5mm 接口音箱</li>
+</ol>
 <hr>
-<p>由于 broadcom 的网卡驱动是闭源的，所以安装 Ubuntu 后是没有无线网卡驱动的，需要自行安装</p>
-<!--more-->
+<h3 id="工作目标"><a href="#工作目标" class="headerlink" title="工作目标"></a>工作目标</h3><p>依照 <a href="https://wukong.hahack.com/#/install?id=%e6%96%b9%e5%bc%8f%e4%ba%8c%ef%bc%9a%e6%89%8b%e5%8a%a8%e5%ae%89%e8%a3%85" target="_blank" rel="noopener">wukong</a> 的项目文档进行配置，确保所有硬件在 RASP 上正常工作</p>
+<h3 id="调试方法"><a href="#调试方法" class="headerlink" title="调试方法"></a>调试方法</h3><p>sox 用于录音与播放，所以使用这个软件调试音频部分。</p>
+<h3 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h3><p>在调试过程中遇到以下两个问题:</p>
 <ol>
-<li><p>下载 broadcom 无线网卡驱动的安装包<br> <a href="https://packages.ubuntu.com/bionic/bcmwl-kernel-source" target="_blank" rel="noopener">bcmwl-kernel-source_6.30.223.271+bdcom-0ubuntu4_amd64.deb</a></p>
-</li>
-<li><p>移除旧版本驱动后，安装下载到的安装包<br> <code>sudo apt-get remove --purge bcmwl-kernel-source</code><br> <code>sudo dpkg -i bcmwl-kernel-source_6.30.223.271+bdcom-0ubuntu4_amd64.deb</code></p>
-</li>
-<li><p>“ERROR：could not insert ‘wl’:Required key not available” 如果出现这个错误提示，按以下步骤操作</p>
+<li>sox 无法完整播放 mp3 音频文件.</li>
+<li>sox 在普通用户下，无法使用默认设备录音</li>
+</ol>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p><strong>问题一</strong><br>sox 无法完整播放 mp3 音频文件</p>
 <ol>
-<li><p>创建签名 keys<br><code>openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj &quot;/CN=Descriptive name/&quot;</code></p>
+<li><p><del>首先猜测与文件权限有关</del></p>
+<ul>
+<li>使用 root 用户播放，依旧无法完整播放，故排除此猜测。</li>
+</ul>
 </li>
-<li><p>注册模块<br><code>sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n wl)</code></p>
-</li>
-<li><p>注册 key 到 Secure Boot<br><code>sudo mokutil --import MOK.der</code></p>
-</li>
-<li><p>重启，选择带有MOK的那一项，输入刚才设置的密码</p>
-</li>
-<li><p><code>sudo modprobe wl</code></p>
+<li><p>猜测与解码器有关</p>
+<ul>
+<li>把 mp3 转换为 wav，改用 aplay 播放</li>
+<li>正常播放，所以此问题与解码器有关</li>
+</ul>
 </li>
 </ol>
-<p>参考资料<br><a href="https://elementaryos.stackexchange.com/questions/15842/bcm43142-and-linux-kernel-4-15-0-24-generic/15855#15855" target="_blank" rel="noopener">BCM43142 and linux kernel 4.15.0-24-generic</a><br><a href="%3Cspan%3Ehttps://www.cnblogs.com/lenmom/p/9550325.html%3C/span%3E">在ubuntu 18.04下，无线网卡无驱动，连不上wifi，显示wifi没有适配器的解决方法</a></p>
+<p>解决方法：<br>修改源代码，把 mp3 转换为 wav。</p>
+<p><strong>问题二</strong><br>sox 在普通用户下，无法使用默认设备录音</p>
+<ol>
+<li><p><del>首先猜测与用户权限有关</del></p>
+<ul>
+<li>查看 /etc/group，pi 已加入到 audio 组，故排除此猜测</li>
+</ul>
+</li>
+<li><p>观察到使用 root 录音时，默认设备为 alsa，而普通用户显示的是 pulseaudio，故猜测与 pulseaudio 的设置有关。</p>
+<ul>
+<li>在 pulseaudio 配置文件中添加 alsa 模块。<a href="https://renatocunha.com/2012/04/playstation-eye-audio-linux/" target="_blank" rel="noopener">设置教程</a></li>
+</ul>
 </li>
 </ol>
+<p>解决方法：<br>在 pulseaudio 配置文件中添加 alsa 模块。</p>
 
     </div>
 
@@ -245,6 +266,10 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+              <a href="/tags/IOT/" rel="tag"># IOT</a>
+          </div>
 
         
 
@@ -258,7 +283,7 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/12/app_ops/" rel="prev" title="app_ops">
+                <a href="/2019/11/13/app_ops/" rel="prev" title="app_ops">
                   app_ops <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -299,6 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作目标"><span class="nav-number">1.</span> <span class="nav-text">工作目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试方法"><span class="nav-number">2.</span> <span class="nav-text">调试方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUG"><span class="nav-number">3.</span> <span class="nav-text">BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
