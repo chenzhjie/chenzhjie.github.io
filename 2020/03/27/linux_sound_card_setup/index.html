@@ -51,18 +51,20 @@
   };
 </script>
 
-  <meta name="description" content="当我们需要在本地部署 https 服务，就需要用到证书。">
-<meta name="keywords" content="证书,certbot,Let&#39;s Encrypt">
+  <meta name="description" content="Linux 设置默认播放设备和录音设备">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何自签证书和使用 cetbot 签发 Let&#39;s Encrypt 证书">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;28&#x2F;certbot&#x2F;index.html">
+<meta property="og:title" content="Linux 声卡设置">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;27&#x2F;linux_sound_card_setup&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="当我们需要在本地部署 https 服务，就需要用到证书。">
+<meta property="og:description" content="Linux 设置默认播放设备和录音设备">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-28T03:47:03.061Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;alsamixer.jpg">
+<meta property="og:updated_time" content="2019-11-13T06:37:37.000Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;alsamixer.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/28/certbot/">
+<link rel="canonical" href="http://yoursite.com/2020/03/27/linux_sound_card_setup/">
 
 
 <script id="page-configurations">
@@ -76,7 +78,7 @@
   };
 </script>
 
-  <title>如何自签证书和使用 cetbot 签发 Let's Encrypt 证书 | Hexo</title>
+  <title>Linux 声卡设置 | Hexo</title>
   
 
 
@@ -185,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/certbot/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/27/linux_sound_card_setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何自签证书和使用 cetbot 签发 Let's Encrypt 证书
+          Linux 声卡设置
         </h1>
 
         <div class="post-meta">
@@ -208,8 +210,15 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-03-28 11:47:03" itemprop="dateCreated datePublished" datetime="2020-03-28T11:47:03+08:00">2020-03-28</time>
+              <time title="Created: 2020-03-27 17:22:02" itemprop="dateCreated datePublished" datetime="2020-03-27T17:22:02+08:00">2020-03-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-13 14:37:37" itemprop="dateModified" datetime="2019-11-13T14:37:37+08:00">2019-11-13</time>
+              </span>
 
           
 
@@ -222,39 +231,78 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>当我们需要在本地部署 https 服务，就需要用到证书。</p>
+        <p>Linux 设置默认播放设备和录音设备</p>
 <a id="more"></a>
 
-<p>[TOC]</p>
-<h2 id="自签证书"><a href="#自签证书" class="headerlink" title="自签证书"></a>自签证书</h2><p><strong><em>生成私钥(server.key)及crt证书(server.crt)</em></strong></p>
+<p>一、查看声卡设备</p>
+<p><code>cat /proc/asound/cards</code></p>
+<p>会显示安装该设备在 ALSA(Advanced Linux Sound Architecture) 框架下的所有设备</p>
+<blockquote>
+<p>ALSA是Advanced Linux Sound Architecture，高级Linux声音架构的简称,它在Linux操作系统上提供了音频和MIDI（Musical Instrument Digital Interface，音乐设备数字化接口）的支持</p>
+</blockquote>
+<p>二、调节音量大小</p>
+<p><code>alsamixer</code></p>
+<p>打开 AlsaMixer，调节音量大小<br><img src="/images/alsamixer.jpg" alt="图2.1 alsamixer"></p>
+<p>三、配置音频输出设备</p>
+<p><code>amixer</code></p>
+<p>可以设置声音由 3.5mm 接口输出还是由 HDMI 输出，具体用法 <code>amixer --help</code> 查看</p>
+<p>四、播放测试</p>
 <ol>
-<li>生成server.key</li>
+<li><p><code>speaker-test -c2 -t wav</code></p>
+<p> 测试默认音频播放是否正常</p>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl genrsa -des3 -out server.key 2048</span><br></pre></td></tr></table></figure>
-
-<p>以上命令是基于des3算法生成的rsa私钥，在生成私钥时必须输入至少4位的密码。</p>
 <ol start="2">
-<li>生成无密码的server.key</li>
+<li><p><code>speaker-test -D plughw:1 -c2 -t wav</code></p>
+<p> 测试声卡1音频播放是否正常</p>
+<p>五、录音测试</p>
+</li>
+<li><p><code>sudo apt install sox libsox-fmt-mp3</code></p>
+<p> 安装 sox 和相应的库，sox 的格式为 <code>sox &lt;input&gt; &lt;output&gt;</code></p>
+</li>
+<li><p><code>sox -t alsa plughw:1 -t alsa plughw:1</code></p>
+<p> 测试声卡1录音</p>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl rsa -in server.key -out server.key</span><br></pre></td></tr></table></figure>
+<p>六、修改默认音频设备</p>
+<ol>
+<li><p>修改 ALSA 默认音频设备</p>
+</li>
+<li><p> <code>nano ~/.asoundrc</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pcm.!default &#123;</span><br><span class="line">        type asym</span><br><span class="line">        playback.pcm &#123;</span><br><span class="line">            type plug</span><br><span class="line">            slave.pcm &quot;hw:1,0&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        capture.pcm &#123;</span><br><span class="line">            type plug</span><br><span class="line">            slave.pcm &quot;hw:1,0&quot;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ctl.!default &#123;</span><br><span class="line">        type hw</span><br><span class="line">        card 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 PulseAudio 默认音频设备</p>
+</li>
+<li><p> <code>nano /etc/pulse/default.pa</code></p>
+<p> 在末尾添加</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load-module module-alsa-source device=hw:1,0</span><br><span class="line">pacmd load-module module-alsa-source device=hw:1,0</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>生成CA的crt</li>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -new -x509 -key server.key -out ca.crt -days 3650</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>基于ca.crt生成csr</li>
+<p>七、录制与播放</p>
+<ol>
+<li>录制<ol>
+<li><code>arecord a.wav</code></li>
+<li><code>sox -d myrec.mp3 或 $ rec myrec.mp3</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -new -key server.key -out server.csr</span><br></pre></td></tr></table></figure>
-
-<p>命令的执行过程中依次输入国家、省份、城市、公司、部门及邮箱等信息。</p>
-<ol start="5">
-<li>生成crt（已认证）</li>
+</li>
+<li>定时录制<ol>
+<li><code>sox -t alsa plughw:1 myrec.wav trim 0 00:30:00</code></li>
+<li><code>sox -t alsa plughw:1 myrec.wav trim 0 01:00:00 : newfile : restart</code></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out serve</span><br></pre></td></tr></table></figure>
+</li>
+<li>播放<ol>
+<li><code>aplay a.wav</code></li>
+<li><code>sox myrec.mp3 -d 或 $ play myrec.mp3</code></li>
+</ol>
+</li>
+<li>远程监听<ol>
+<li><code>ssh pi@[IP address] sox -t alsa plughw:1 -t sox - | sox -q -t sox - -d</code></li>
+</ol>
+</li>
+</ol>
+<p>参考资料<br><a href="https://rollingstarky.github.io/2019/01/06/raspberry-pi-audio-configuration-and-applications/" target="_blank" rel="noopener">树莓派3 音频配置及其应用场景（录音、VoIP 电话等）</a></p>
 
-<h2 id="使用-cetbot-签发-Let’s-Encrypt-证书"><a href="#使用-cetbot-签发-Let’s-Encrypt-证书" class="headerlink" title="使用 cetbot 签发 Let’s Encrypt 证书"></a>使用 cetbot 签发 Let’s Encrypt 证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">sudo mv certbot-auto /usr/local/bin/certbot-auto</span><br><span class="line">sudo chown root /usr/local/bin/certbot-auto</span><br><span class="line">sudo chmod 0755 /usr/local/bin/certbot-auto</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -263,23 +311,24 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AF%81%E4%B9%A6/" rel="tag"># 证书</a>
-              <a href="/tags/certbot/" rel="tag"># certbot</a>
-              <a href="/tags/Let-s-Encrypt/" rel="tag"># Let's Encrypt</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/03/28/using-nginx/" rel="next" title="Nginx 使用总结">
-                  <i class="fa fa-chevron-left"></i> Nginx 使用总结
+                <a href="/2020/03/27/scrapy_control_android/" rel="next" title="Scrcpy 利用 ADB 远程控制安卓手机">
+                  <i class="fa fa-chevron-left"></i> Scrcpy 利用 ADB 远程控制安卓手机
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/03/27/github_page/" rel="prev" title="利用 Github Pages 搭建博客">
+                  利用 Github Pages 搭建博客 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -318,7 +367,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自签证书"><span class="nav-number">1.</span> <span class="nav-text">自签证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-cetbot-签发-Let’s-Encrypt-证书"><span class="nav-number">2.</span> <span class="nav-text">使用 cetbot 签发 Let’s Encrypt 证书</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
