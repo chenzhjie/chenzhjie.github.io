@@ -51,15 +51,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Tagcloud">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="当我们需要在本地部署 https 服务，就需要用到证书。">
+<meta name="keywords" content="证书,certbot,Let&#39;s Encrypt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何自签证书和使用 cetbot 签发 Let&#39;s Encrypt 证书">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;1970&#x2F;01&#x2F;01&#x2F;certbot&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="当我们需要在本地部署 https 服务，就需要用到证书。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-28T04:12:01.000Z">
+<meta property="og:updated_time" content="2020-06-21T10:57:16.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/1970/01/01/certbot/">
 
 
 <script id="page-configurations">
@@ -67,14 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Tagcloud | Hexo
-  </title>
+  <title>如何自签证书和使用 cetbot 签发 Let's Encrypt 证书 | Hexo</title>
   
 
 
@@ -174,52 +176,126 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="en">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">Tagcloud
-</h1>
-
-<div class="post-meta">
+      
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/certbot/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何自签证书和使用 cetbot 签发 Let's Encrypt 证书
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-21 18:57:16" itemprop="dateModified" datetime="2020-06-21T18:57:16+08:00">2020-06-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              15 tags in total
+        <p>当我们需要在本地部署 https 服务，就需要用到证书。</p>
+<a id="more"></a>
+
+<p>[TOC]</p>
+<h2 id="自签证书"><a href="#自签证书" class="headerlink" title="自签证书"></a>自签证书</h2><p><strong><em>生成私钥(server.key)及crt证书(server.crt)</em></strong></p>
+<ol>
+<li>生成server.key</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl genrsa -des3 -out server.key 2048</span><br></pre></td></tr></table></figure>
+
+<p>以上命令是基于des3算法生成的rsa私钥，在生成私钥时必须输入至少4位的密码。</p>
+<ol start="2">
+<li>生成无密码的server.key</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl rsa -in server.key -out server.key</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>生成CA的crt</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -new -x509 -key server.key -out ca.crt -days 3650</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>基于ca.crt生成csr</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -new -key server.key -out server.csr</span><br></pre></td></tr></table></figure>
+
+<p>命令的执行过程中依次输入国家、省份、城市、公司、部门及邮箱等信息。</p>
+<ol start="5">
+<li>生成crt（已认证）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out serve</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-cetbot-签发-Let’s-Encrypt-证书"><a href="#使用-cetbot-签发-Let’s-Encrypt-证书" class="headerlink" title="使用 cetbot 签发 Let’s Encrypt 证书"></a>使用 cetbot 签发 Let’s Encrypt 证书</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">sudo mv certbot-auto /usr/local/bin/certbot-auto</span><br><span class="line">sudo chown root /usr/local/bin/certbot-auto</span><br><span class="line">sudo chmod 0755 /usr/local/bin/certbot-auto</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%81%E4%B9%A6/" rel="tag"># 证书</a>
+              <a href="/tags/certbot/" rel="tag"># certbot</a>
+              <a href="/tags/Let-s-Encrypt/" rel="tag"># Let's Encrypt</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/1970/01/01/app_ops/" rel="next" title="Android 使用 APP Ops 和 Shizuku 配置应用权限">
+                  <i class="fa fa-chevron-left"></i> Android 使用 APP Ops 和 Shizuku 配置应用权限
+                </a>
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Android/" style="font-size: 12px; color: #ccc">Android</a> <a href="/tags/CSAPP/" style="font-size: 12px; color: #ccc">CSAPP</a> <a href="/tags/IOT/" style="font-size: 12px; color: #ccc">IOT</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 12px; color: #ccc">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 30px; color: #111">Linux</a> <a href="/tags/NLP/" style="font-size: 12px; color: #ccc">NLP</a> <a href="/tags/Nginx/" style="font-size: 12px; color: #ccc">Nginx</a> <a href="/tags/blog/" style="font-size: 12px; color: #ccc">blog</a> <a href="/tags/certbot/" style="font-size: 12px; color: #ccc">certbot</a> <a href="/tags/datalab/" style="font-size: 12px; color: #ccc">datalab</a> <a href="/tags/docker/" style="font-size: 12px; color: #ccc">docker</a> <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/leetcode/" style="font-size: 12px; color: #ccc">leetcode</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12px; color: #ccc">总结</a> <a href="/tags/%E8%AF%81%E4%B9%A6/" style="font-size: 12px; color: #ccc">证书</a>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
             </div>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
   </div>
 
 
@@ -249,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自签证书"><span class="nav-number">1.</span> <span class="nav-text">自签证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-cetbot-签发-Let’s-Encrypt-证书"><span class="nav-number">2.</span> <span class="nav-text">使用 cetbot 签发 Let’s Encrypt 证书</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

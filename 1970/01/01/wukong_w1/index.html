@@ -51,15 +51,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Tagcloud">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="我 fork 的一个开源项目，名叫 wukong-robot这是我第一周的工作">
+<meta name="keywords" content="NLP,IOT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wukong Robot (Week 1)">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;1970&#x2F;01&#x2F;01&#x2F;wukong_w1&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我 fork 的一个开源项目，名叫 wukong-robot这是我第一周的工作">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-28T04:12:01.000Z">
+<meta property="og:updated_time" content="2020-06-21T10:57:02.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/1970/01/01/wukong_w1/">
 
 
 <script id="page-configurations">
@@ -67,14 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Tagcloud | Hexo
-  </title>
+  <title>Wukong Robot (Week 1) | Hexo</title>
   
 
 
@@ -174,52 +176,139 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="en">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">Tagcloud
-</h1>
-
-<div class="post-meta">
+      
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/wukong_w1/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Wukong Robot (Week 1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-21 18:57:02" itemprop="dateModified" datetime="2020-06-21T18:57:02+08:00">2020-06-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              15 tags in total
+        <p>我 fork 的一个开源项目，名叫 <a href="https://github.com/wzpan/wukong-robot/" target="_blank" rel="noopener">wukong-robot</a><br>这是我第一周的工作</p>
+<a id="more"></a>
+
+<p>第一周的工作主要是搭建硬件平台，我使用的硬件清单如下：</p>
+<ol>
+<li>RASP 3B+</li>
+<li>Sony PS3 eye</li>
+<li>3.5mm 接口音箱</li>
+</ol>
+<hr>
+<h3 id="工作目标"><a href="#工作目标" class="headerlink" title="工作目标"></a>工作目标</h3><p>依照 <a href="https://wukong.hahack.com/#/install?id=%e6%96%b9%e5%bc%8f%e4%ba%8c%ef%bc%9a%e6%89%8b%e5%8a%a8%e5%ae%89%e8%a3%85" target="_blank" rel="noopener">wukong</a> 的项目文档进行配置，确保所有硬件在 RASP 上正常工作</p>
+<h3 id="调试方法"><a href="#调试方法" class="headerlink" title="调试方法"></a>调试方法</h3><p>sox 用于录音与播放，所以使用这个软件调试音频部分。</p>
+<h3 id="BUG"><a href="#BUG" class="headerlink" title="BUG"></a>BUG</h3><p>在调试过程中遇到以下两个问题:</p>
+<ol>
+<li>sox 无法完整播放 mp3 音频文件.</li>
+<li>sox 在普通用户下，无法使用默认设备录音</li>
+</ol>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p><strong>问题一</strong><br>sox 无法完整播放 mp3 音频文件</p>
+<ol>
+<li><p><del>首先猜测与文件权限有关</del></p>
+<ul>
+<li>使用 root 用户播放，依旧无法完整播放，故排除此猜测。</li>
+</ul>
+</li>
+<li><p>猜测与解码器有关</p>
+<ul>
+<li>把 mp3 转换为 wav，改用 aplay 播放</li>
+<li>正常播放，所以此问题与解码器有关</li>
+</ul>
+</li>
+</ol>
+<p>解决方法：<br>修改源代码，把 mp3 转换为 wav。</p>
+<p><strong>问题二</strong><br>sox 在普通用户下，无法使用默认设备录音</p>
+<ol>
+<li><p><del>首先猜测与用户权限有关</del></p>
+<ul>
+<li>查看 /etc/group，pi 已加入到 audio 组，故排除此猜测</li>
+</ul>
+</li>
+<li><p>观察到使用 root 录音时，默认设备为 alsa，而普通用户显示的是 pulseaudio，故猜测与 pulseaudio 的设置有关。</p>
+<ul>
+<li>在 pulseaudio 配置文件中添加 alsa 模块。<a href="https://renatocunha.com/2012/04/playstation-eye-audio-linux/" target="_blank" rel="noopener">设置教程</a></li>
+</ul>
+</li>
+</ol>
+<p>解决方法：<br>在 pulseaudio 配置文件中添加 alsa 模块。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+              <a href="/tags/IOT/" rel="tag"># IOT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Android/" style="font-size: 12px; color: #ccc">Android</a> <a href="/tags/CSAPP/" style="font-size: 12px; color: #ccc">CSAPP</a> <a href="/tags/IOT/" style="font-size: 12px; color: #ccc">IOT</a> <a href="/tags/Let-s-Encrypt/" style="font-size: 12px; color: #ccc">Let's Encrypt</a> <a href="/tags/Linux/" style="font-size: 30px; color: #111">Linux</a> <a href="/tags/NLP/" style="font-size: 12px; color: #ccc">NLP</a> <a href="/tags/Nginx/" style="font-size: 12px; color: #ccc">Nginx</a> <a href="/tags/blog/" style="font-size: 12px; color: #ccc">blog</a> <a href="/tags/certbot/" style="font-size: 12px; color: #ccc">certbot</a> <a href="/tags/datalab/" style="font-size: 12px; color: #ccc">datalab</a> <a href="/tags/docker/" style="font-size: 12px; color: #ccc">docker</a> <a href="/tags/github/" style="font-size: 12px; color: #ccc">github</a> <a href="/tags/leetcode/" style="font-size: 12px; color: #ccc">leetcode</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12px; color: #ccc">总结</a> <a href="/tags/%E8%AF%81%E4%B9%A6/" style="font-size: 12px; color: #ccc">证书</a>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/1970/01/01/using-nginx/" rel="prev" title="Nginx 使用总结">
+                  Nginx 使用总结 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
   </div>
 
 
@@ -249,6 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作目标"><span class="nav-number">1.</span> <span class="nav-text">工作目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试方法"><span class="nav-number">2.</span> <span class="nav-text">调试方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BUG"><span class="nav-number">3.</span> <span class="nav-text">BUG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

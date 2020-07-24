@@ -51,28 +51,32 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="Scrcpy 是一款开源软件，可以利用 adb 远程控制安卓手机">
+<meta name="keywords" content="Linux,Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrcpy 利用 ADB 远程控制安卓手机">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;1970&#x2F;01&#x2F;01&#x2F;scrapy_control_android&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Scrcpy 是一款开源软件，可以利用 adb 远程控制安卓手机">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-21T10:57:28.000Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/page/2/">
+<link rel="canonical" href="http://yoursite.com/1970/01/01/scrapy_control_android/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Hexo</title>
+  <title>Scrcpy 利用 ADB 远程控制安卓手机 | Hexo</title>
   
 
 
@@ -177,11 +181,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/wukong_w1/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/scrapy_control_android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,8 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1970/01/01/wukong_w1/" class="post-title-link" itemprop="url">Wukong Robot (Week 1)</a>
+          Scrcpy 利用 ADB 远程控制安卓手机
         </h1>
 
         <div class="post-meta">
@@ -212,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:02" itemprop="dateModified" datetime="2020-06-21T18:57:02+08:00">2020-06-21</time>
+                <time title="Modified: 2020-06-21 18:57:28" itemprop="dateModified" datetime="2020-06-21T18:57:28+08:00">2020-06-21</time>
               </span>
 
           
@@ -226,36 +229,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我 fork 的一个开源项目，名叫 <a href="https://github.com/wzpan/wukong-robot/" target="_blank" rel="noopener">wukong-robot</a><br>这是我第一周的工作</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/1970/01/01/wukong_w1/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <p><a href="https://github.com/Genymobile/scrcpy" target="_blank" rel="noopener">Scrcpy</a> 是一款开源软件，可以利用 adb 远程控制安卓手机</p>
+<a id="more"></a>
+<h2 id="一、安装-Scrcpy"><a href="#一、安装-Scrcpy" class="headerlink" title="一、安装 Scrcpy"></a>一、安装 Scrcpy</h2><p>Scrcpy 的 readme 有完整的安装教程，这里作一下简单介绍 Ubuntu 上的安装</p>
+<ol>
+<li><p>Install the required packages</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#runtime dependencies</span><br><span class="line">sudo apt install ffmpeg libsdl2-2.0-0</span><br><span class="line"></span><br><span class="line">#client build dependencies</span><br><span class="line">sudo apt install gcc git pkg-config meson ninja-build \</span><br><span class="line">                 libavcodec-dev libavformat-dev libavutil-dev \</span><br><span class="line">                 libsdl2-dev</span><br><span class="line"></span><br><span class="line">#server build dependencies</span><br><span class="line">sudo apt install openjdk-8-jdk</span><br><span class="line">On old versions (like Ubuntu 16.04), meson is too old. In that case, install it from    pip3:sudo apt install python3-pip</span><br><span class="line">pip3 install meson</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译安装</p>
+<ol>
+<li><p>克隆仓库<br> <code>git clone https://github.com/Genymobile/scrcpy</code><br> <code>cd scrcpy</code></p>
+</li>
+<li><p>编译源码，这里我使用了 <a href="https://github-production-release-asset-2e65be.s3.amazonaws.com/111583593/30061280-b703-11e9-80b3-453032a250e1?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20191105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20191105T024613Z&X-Amz-Expires=300&X-Amz-Signature=20704b0960d72d4dc0347d6f8c2bb75a3a9fa04a413ac7342641b062198b5ead&X-Amz-SignedHeaders=host&actor_id=0&response-content-disposition=attachment%3B%20filename%3Dscrcpy-server-v1.10.jar&response-content-type=application%2Foctet-stream" target="_blank" rel="noopener">Prebuilt server</a></p>
+<p> `meson x –buildtype release –strip -Db_lto=true \</p>
+<pre><code>-Dprebuilt_server=/path/to/scrcpy-server.jar`</code></pre><p> <code>ninja -Cx</code><br> <code>sudo ninja -Cx install</code></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="二、Scrcpy-使用方法"><a href="#二、Scrcpy-使用方法" class="headerlink" title="二、Scrcpy 使用方法"></a>二、Scrcpy 使用方法</h2><ol>
+<li>安装 adb</li>
+<li><code>adb devices</code> 列出可用的安卓设备</li>
+<li>Scrcpy 常用命令和快捷键</li>
+</ol>
+<p>|  scrcpy 常用命令 |<br>| — | — |<br>| 关闭手机屏幕 | scrcpy -S |<br>| 限制画面分辨率 | scrcpy -m 1024 (比如限制为 1024) |<br>| 修改视频码率 | scrcpy -b 4M (默认 8Mbps，改成 4Mbps) |<br>| 裁剪画面 | scrcpy -c 1224:1440:0:0 表示分辨率 1224x1440 并且偏移坐标为 (0,0) |<br>| 多设备切换 | scrcpy -s 设备ID (使用 adb devices 命令查看设备ID) |<br>| 窗口置顶 | scrcpy -T |<br>| 显示触摸点击 | scrcpy -t  在演示或录制教程时，可在画面上对应显示出点击动作|<br>| 全屏显示 | scrcpy -f |<br>| 文件传输默认路径 | scrcpy –push-target /你的/目录  将文件拖放到 scrcpy 可以传输文件，此命令指定默认保存目录|<br>| 只读模式(仅显示不控制) | scrcpy -n |<br>| 屏幕录像 | scrcpy -r 视频文件名.mp4 或 .mkv |<br>| 屏幕录像 (禁用电脑显示) | scrcpy -Nr 文件名.mkv |<br>| 设置窗口标题 | scrcpy –window-title ‘异次元好棒！’ |<br>| 同步传输声音 | 可借助 USBaudio 这个开源项目实现，但仅支持 Linux 系统 |</p>
+<p>|  scrcpy 常用快捷键 |<br>| — | — |<br>| 切换全屏模式 | Ctrl+F  |<br>| 将窗口调整为1：1（完美像素） | Ctrl+G  |<br>| 调整窗口大小以删除黑色边框 | Ctrl+X 或 双击黑色背景|<br>| 设备 HOME 键 | Ctrl+H 或 鼠标中键  |<br>| 设备 BACK 键  | Ctrl+B 或 鼠标右键  |<br>| 设备 任务管理 键 (切换APP)  | Ctrl+S  |<br>| 设备 菜单 键 | Ctrl+M |<br>| 设备音量+键 | Ctrl+↑ |<br>| 设备音量-键 | Ctrl+↓ |<br>| 设备电源键| Ctrl+P |<br>| 点亮手机屏幕 | 鼠标右键  |<br>| 复制内容到设备| Ctrl+V  |<br>| 启用/禁用 FPS 计数器（stdout） | Ctrl+i  |<br>| 安装APK  | 将 apk 文件拖入投屏  |<br>| 传输文件到设备 | 将文件拖入投屏（非apk） |</p>
+<ol start="4">
+<li>屏幕录像<ol>
+<li>投屏并录屏<br><code>scrcpy -r file.mp4</code></li>
+<li>不投屏只录屏<br><code>scrcpy -Nr file.mp4</code></li>
+</ol>
+</li>
+<li>使用 WIFi 无线连接<ol>
+<li>启用 adb TCP/IP 连接<br><code>adb tcpip 5555</code></li>
+<li>通过 WIFI 连接<br><code>adb connect 设备IP地址:5555</code></li>
+<li>使用 Scrcpy 连接，如需切换回 USB 模式，执行<br> <code>adb usb</code></li>
+</ol>
+</li>
+</ol>
+<p>参考资料<br><a href="https://www.iplaysoft.com/scrcpy.html" target="_blank" rel="noopener">Scrcpy - 开源免费在电脑显示手机画面并控制手机的工具 (投屏/录屏/免Root)</a></p>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/1970/01/01/ubuntu_wifi_setup/" rel="next" title="Ubuntu 18.04LTS 安装无线网卡驱动">
+                  <i class="fa fa-chevron-left"></i> Ubuntu 18.04LTS 安装无线网卡驱动
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/1970/01/01/linux_sound_card_setup/" rel="prev" title="Linux 声卡设置">
+                  Linux 声卡设置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
@@ -284,6 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安装-Scrcpy"><span class="nav-number">1.</span> <span class="nav-text">一、安装 Scrcpy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Scrcpy-使用方法"><span class="nav-number">2.</span> <span class="nav-text">二、Scrcpy 使用方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
