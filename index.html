@@ -181,7 +181,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/certbot/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/09/Kindle%20%E8%B6%8A%E7%8B%B1%E5%B9%B6%E6%94%B9%E9%80%A0%E4%B8%BA%E6%97%A5%E5%8E%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -195,7 +195,222 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/certbot/" class="post-title-link" itemprop="url">如何自签证书和使用 cetbot 签发 Let's Encrypt 证书</a>
+            <a href="/2021/02/09/Kindle%20%E8%B6%8A%E7%8B%B1%E5%B9%B6%E6%94%B9%E9%80%A0%E4%B8%BA%E6%97%A5%E5%8E%86/" class="post-title-link" itemprop="url">Kindle 越狱并改造为日历</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-09 15:10:05 / Modified: 15:15:30" itemprop="dateCreated datePublished" datetime="2021-02-09T15:10:05+08:00">2021-02-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1-为什么要越狱"><a href="#1-为什么要越狱" class="headerlink" title="1. 为什么要越狱"></a>1. 为什么要越狱</h1><p>在开始之前先说一下为什么要越狱        </p>
+<ol>
+<li>越狱之后可以<strong>得到</strong>什么 :<br>越狱之后就是一个 Linux 系统，Linux 能做的事它都能做    </li>
+<li>越狱之后的<strong>缺点</strong> :<br>与此同时，越狱之后作为一个阅读器的体验可能会下降，包括耗电量可能会增加。    </li>
+</ol>
+<p>所以，如果你要越狱，一般的情况是你有多个 Kindle，或者你的 Kindle 长时间闲置不用，<br>需要把它改造成其他东西，也可以是单纯想折腾一下</p>
+<h1 id="2-如何越狱"><a href="#2-如何越狱" class="headerlink" title="2. 如何越狱"></a>2. 如何越狱</h1><p>特定版本的 Kindle 可以利用系统漏洞越狱，看自己的 Kindle 是否符合条件，请到下面网址查询：<a href="https://bookfere.com/post/410.html" target="_blank" rel="noopener">Kindle 越狱教程：利用特制固件越狱</a><br>如果你的 Kindle 版本不符合上面的要求，就需要拆机利用串口进行破解。</p>
+<h1 id="3-拆机越狱的方法"><a href="#3-拆机越狱的方法" class="headerlink" title="3. 拆机越狱的方法"></a>3. 拆机越狱的方法</h1><p>我只会大概说一下我在越狱过程中觉得需要注意到点，具体的操作请参考下面网址：<a href="http://www.yunjialeguanwang.com/archives/4670.html" target="_blank" rel="noopener">Kindle 7 拆機硬件調試串口越獄教程，這或許是中文互聯網唯三的拆機越獄教程！</a></p>
+<h3 id="1-拆机。"><a href="#1-拆机。" class="headerlink" title="1. 拆机。"></a>1. 拆机。</h3><ol>
+<li>Kindle 的前面板是用胶水粘着的，需要先把前面板撕下来，才能看到里面的螺丝。<br><br>注意：撕的时候注意，不要把屏幕上贴的保护膜破坏，还有最下面的 LED 灯不要弄坏了，可以用<br>热吹风来拆</li>
+<li>把螺丝拧下来后就可以看到主板了</li>
+<li>主板上印丝写着 Serial Debug 的就是串口，TX 和 RX 的位置可能每个版本的 PCB 都不一样。我的是 TX, RX, GND，具体情况要自己测试<br><br>注意：这个串口是1.8V，要判断自己用的 TTL2USB 模块是否支持1.8V。     </li>
+</ol>
+<h3 id="2-计算-root-密码。"><a href="#2-计算-root-密码。" class="headerlink" title="2. 计算 root 密码。"></a>2. 计算 root 密码。</h3><p>登录<a href="https://www.sven.de/kindle/#" target="_blank" rel="noopener">该网站</a>，输入序列号，计算 root 密码。      </p>
+<h3 id="3-使用-Putty-登录控制台"><a href="#3-使用-Putty-登录控制台" class="headerlink" title="3.  使用 Putty 登录控制台"></a>3.  使用 Putty 登录控制台</h3><ol>
+<li>在控制台上显示按任何键进入 uboot 时，按任何键进入 uboot，按照上面的教程选择项目，利用串口登录控制台，用户是 root，密码是上面计算的结果</li>
+<li>删除 root 密码，并重启</li>
+<li>重启后进入系统，下载 jailbreak 文件后放到 Kindle 盘符的根目录，拔掉数据线，在控制台中输入:<br><code>cd /mnt/us &amp;&amp; ./jb.sh</code><br>执行完成后，屏幕的下方会显示 jailbreak</li>
+<li>下载 hotfix 文件，放到 kIndle 盘符的根目录，在 Kindle 菜单中选择系统更新，等待更新完成，Kindle 会自动重启。至此，你的 Kindle 已经越狱成功       </li>
+</ol>
+<h3 id="4-安装插件。"><a href="#4-安装插件。" class="headerlink" title="4. 安装插件。"></a>4. 安装插件。</h3><ol>
+<li>安装 KUAL 和 MPRI，这两个插件安装后，就可以安装其他插件了</li>
+<li>可以安装插件推荐:<a href="https://bookfere.com/post/311.html" target="_blank" rel="noopener">Kindle 越狱插件资源下载及详细安装步骤</a></li>
+</ol>
+<h3 id="5-Kindle-日历。"><a href="#5-Kindle-日历。" class="headerlink" title="5. Kindle 日历。"></a>5. Kindle 日历。</h3><p>这是我根据 onlinescreensaver 这个插件修改的 Kindle 日历，有兴趣的可以看一下 <a href="https://github.com/chenzhjie/kindle_pw3_calendar" target="_blank" rel="noopener">Kindle日历</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/leetcode_1-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/21/leetcode_1-7/" class="post-title-link" itemprop="url">CSAPP datalab 实验总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-21 17:33:12 / Modified: 17:35:08" itemprop="dateCreated datePublished" datetime="2020-06-21T17:33:12+08:00">2020-06-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>此文是本人在做 CSAPP 的 datalab 后的总结与笔记。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/21/leetcode_1-7/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/csapp_datalab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/20/csapp_datalab/" class="post-title-link" itemprop="url">CSAPP datalab 实验总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-06-20 10:31:35 / Modified: 11:16:58" itemprop="dateCreated datePublished" datetime="2020-06-20T10:31:35+08:00">2020-06-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>此文是本人在做 CSAPP 的 datalab 后的总结与笔记。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/20/csapp_datalab/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/certbot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/certbot/" class="post-title-link" itemprop="url">如何自签证书和使用 cetbot 签发 Let's Encrypt 证书</a>
         </h1>
 
         <div class="post-meta">
@@ -205,14 +420,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:16" itemprop="dateModified" datetime="2020-06-21T18:57:16+08:00">2020-06-21</time>
+                <time title="Modified: 2020-03-28 11:47:03" itemprop="dateModified" datetime="2020-03-28T11:47:03+08:00">2020-03-28</time>
               </span>
 
           
@@ -229,7 +444,7 @@
           <p>当我们需要在本地部署 https 服务，就需要用到证书。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/certbot/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/certbot/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -253,7 +468,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/app_ops/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/docker_example/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -267,7 +482,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/app_ops/" class="post-title-link" itemprop="url">Android 使用 APP Ops 和 Shizuku 配置应用权限</a>
+            <a href="/2020/05/02/docker_example/" class="post-title-link" itemprop="url">Docker(Community) 使用简介</a>
         </h1>
 
         <div class="post-meta">
@@ -277,158 +492,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:14" itemprop="dateModified" datetime="2020-06-21T18:57:14+08:00">2020-06-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Android 应用是出了名的耍流氓，索取各种权限，不给还不给用。其实 Android 有一个 APP Ops 的功能，只是被 google 隐藏了，本文就是介绍如何使用该功能</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/1970/01/01/app_ops/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/csapp_datalab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenzhjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1970/01/01/csapp_datalab/" class="post-title-link" itemprop="url">CSAPP datalab 实验总结</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:17" itemprop="dateModified" datetime="2020-06-21T18:57:17+08:00">2020-06-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>此文是本人在做 CSAPP 的 datalab 后的总结与笔记。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/1970/01/01/csapp_datalab/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/docker_example/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenzhjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1970/01/01/docker_example/" class="post-title-link" itemprop="url">Docker(Community) 使用简介</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:19" itemprop="dateModified" datetime="2020-06-21T18:57:19+08:00">2020-06-21</time>
+                <time title="Modified: 2019-11-13 20:19:29" itemprop="dateModified" datetime="2019-11-13T20:19:29+08:00">2019-11-13</time>
               </span>
 
           
@@ -445,7 +516,7 @@
           <p>Docker CE 的使用简介</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/docker_example/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/docker_example/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -469,7 +540,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/github_page/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/github_page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -483,7 +554,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/github_page/" class="post-title-link" itemprop="url">利用 Github Pages 搭建博客</a>
+            <a href="/2020/05/02/github_page/" class="post-title-link" itemprop="url">利用 Github Pages 搭建博客</a>
         </h1>
 
         <div class="post-meta">
@@ -493,14 +564,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:21" itemprop="dateModified" datetime="2020-06-21T18:57:21+08:00">2020-06-21</time>
+                <time title="Modified: 2019-11-13 14:21:46" itemprop="dateModified" datetime="2019-11-13T14:21:46+08:00">2019-11-13</time>
               </span>
 
           
@@ -517,7 +588,7 @@
           <p>介绍如何利用 Github Pages 搭建博客</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/github_page/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/github_page/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -541,7 +612,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/leetcode_1-7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/linux_sound_card_setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -555,7 +626,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/leetcode_1-7/" class="post-title-link" itemprop="url">leetcode 总结</a>
+            <a href="/2020/05/02/linux_sound_card_setup/" class="post-title-link" itemprop="url">Linux 声卡设置</a>
         </h1>
 
         <div class="post-meta">
@@ -565,86 +636,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-24 07:09:59" itemprop="dateModified" datetime="2020-07-24T07:09:59+08:00">2020-07-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>几道 leetcode 题目的总结（只是个人理解，仅供参考）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/1970/01/01/leetcode_1-7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/linux_sound_card_setup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenzhjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1970/01/01/linux_sound_card_setup/" class="post-title-link" itemprop="url">Linux 声卡设置</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:26" itemprop="dateModified" datetime="2020-06-21T18:57:26+08:00">2020-06-21</time>
+                <time title="Modified: 2019-11-13 14:37:37" itemprop="dateModified" datetime="2019-11-13T14:37:37+08:00">2019-11-13</time>
               </span>
 
           
@@ -661,7 +660,7 @@
           <p>Linux 设置默认播放设备和录音设备</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/linux_sound_card_setup/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/linux_sound_card_setup/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -685,7 +684,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/scrapy_control_android/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/ubuntu_wifi_setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -699,7 +698,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/scrapy_control_android/" class="post-title-link" itemprop="url">Scrcpy 利用 ADB 远程控制安卓手机</a>
+            <a href="/2020/05/02/ubuntu_wifi_setup/" class="post-title-link" itemprop="url">Ubuntu 18.04LTS 安装无线网卡驱动</a>
         </h1>
 
         <div class="post-meta">
@@ -709,86 +708,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:28" itemprop="dateModified" datetime="2020-06-21T18:57:28+08:00">2020-06-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://github.com/Genymobile/scrcpy" target="_blank" rel="noopener">Scrcpy</a> 是一款开源软件，可以利用 adb 远程控制安卓手机</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/1970/01/01/scrapy_control_android/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/ubuntu_wifi_setup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenzhjie">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/1970/01/01/ubuntu_wifi_setup/" class="post-title-link" itemprop="url">Ubuntu 18.04LTS 安装无线网卡驱动</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:31" itemprop="dateModified" datetime="2020-06-21T18:57:31+08:00">2020-06-21</time>
+                <time title="Modified: 2019-11-13 14:15:56" itemprop="dateModified" datetime="2019-11-13T14:15:56+08:00">2019-11-13</time>
               </span>
 
           
@@ -805,7 +732,7 @@
           <p>由于 broadcom 的网卡驱动是闭源的，所以安装 Ubuntu 后是没有无线网卡驱动的，需要自行安装</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/ubuntu_wifi_setup/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/ubuntu_wifi_setup/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -829,7 +756,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/1970/01/01/using-nginx/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/app_ops/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -843,7 +770,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/1970/01/01/using-nginx/" class="post-title-link" itemprop="url">Nginx 使用总结</a>
+            <a href="/2020/05/02/app_ops/" class="post-title-link" itemprop="url">Android 使用 APP Ops 和 Shizuku 配置应用权限</a>
         </h1>
 
         <div class="post-meta">
@@ -853,14 +780,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 1970-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="1970-01-01T08:00:00+08:00">1970-01-01</time>
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-21 18:57:33" itemprop="dateModified" datetime="2020-06-21T18:57:33+08:00">2020-06-21</time>
+                <time title="Modified: 2019-11-13 14:23:48" itemprop="dateModified" datetime="2019-11-13T14:23:48+08:00">2019-11-13</time>
               </span>
 
           
@@ -874,10 +801,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近用 Nginx 把本地 nextcloud 和 onlyoffice 服务转换为 https, 把 Nginx 的使用方法总结一下</p>
+          <p>Android 应用是出了名的耍流氓，索取各种权限，不给还不给用。其实 Android 有一个 APP Ops 的功能，只是被 google 隐藏了，本文就是介绍如何使用该功能</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/1970/01/01/using-nginx/#more" rel="contents">
+              <a class="btn" href="/2020/05/02/app_ops/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/scrapy_control_android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenzhjie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/scrapy_control_android/" class="post-title-link" itemprop="url">Scrcpy 利用 ADB 远程控制安卓手机</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-02 18:23:51" itemprop="dateCreated datePublished" datetime="2020-05-02T18:23:51+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-13 14:20:28" itemprop="dateModified" datetime="2019-11-13T14:20:28+08:00">2019-11-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a href="https://github.com/Genymobile/scrcpy" target="_blank" rel="noopener">Scrcpy</a> 是一款开源软件，可以利用 adb 远程控制安卓手机</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/02/scrapy_control_android/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -945,14 +944,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -982,7 +981,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
